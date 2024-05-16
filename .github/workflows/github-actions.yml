@@ -20,9 +20,14 @@ jobs:
           ls ${{ github.workspace }}/third-party/gtest
       - run: |
           cmake -H. -B _build
+      - run: |
           cmake --build _build
           ls ${{ github.workspace }}/_build
       - run: |
           ctest --test-dir ${{ github.workspace }}/_build
           ${{ github.workspace }}/_build/build1
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+          cmake -H. -B_build -DCPACK_GENERATOR="TGZ"
+          cmake --build _build --target package
+          mv _build/*.tar.gz artifacts
+          tree artifacts
+       - run: echo "🍏 This job's status is ${{ job.status }}."
