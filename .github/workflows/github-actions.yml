@@ -1,11 +1,14 @@
 name: GitHub Actions build
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Debug
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -22,6 +25,7 @@ jobs:
           cmake -H. -B _build
           cmake --build _build
           ls ${{ github.workspace }}/_build
+      - run: |
           cmake --build _build --target test -- ARGS=--verbose
           ${{ github.workspace }}/_build/build1
       - run: echo "🍏 This job's status is ${{ job.status }}."
