@@ -20,10 +20,9 @@ jobs:
           ls ${{ github.workspace }}/third-party/gtest
       - run: |
           cmake -H. -B _build
-      - run: |
           cmake --build _build
           ls ${{ github.workspace }}/_build
       - run: |
           ctest --test-dir ${{ github.workspace }}/_build
           ${{ github.workspace }}/_build/build1
-       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: echo "🍏 This job's status is ${{ job.status }}."
