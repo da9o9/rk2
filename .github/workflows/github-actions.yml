@@ -25,4 +25,7 @@ jobs:
       - run: |
           ctest --test-dir ${{ github.workspace }}/_build
           ${{ github.workspace }}/_build/build1
+          cmake -H. -B_build -DCPACK_GENERATOR="TGZ"
+          cmake --build _build --target package
+          mv _build/*.tar.gz artifacts
       - run: echo "🍏 This job's status is ${{ job.status }}."
