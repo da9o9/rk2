@@ -19,5 +19,5 @@ jobs:
           cmake -H. -B _build
           cmake --build _build
           ls ${{ github.workspace }}
-          ${{ github.workspace }}/build1
+          ${{ github.workspace }}/_build/build1
       - run: echo "🍏 This job's status is ${{ job.status }}."
