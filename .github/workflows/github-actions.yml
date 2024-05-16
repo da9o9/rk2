@@ -18,7 +18,7 @@ jobs:
       - run: |
           cmake -H. -B _build
           cmake --build _build
-          cmake --build _build --target test
-          ls ${{ github.workspace }}
+          ls ${{ github.workspace }}/_build
+          cmake --build _build --target test -- ARGS=--verbose
           ${{ github.workspace }}/_build/build1
       - run: echo "🍏 This job's status is ${{ job.status }}."
